@@ -87,7 +87,7 @@ Agent B has `POST /analyze` (takes property criteria, returns valuation) and `GE
 
 **Pipeline state dict in Agent B.** I tried having the LLM pass complex JSON between tool calls and it kept mangling the data. So steps 3 and 4 of the pipeline take zero arguments -- they just read from a shared dictionary that previous steps wrote to. Fixed about 20% of Agent B failures.
 
-**Structured output via function calling.** OpenRouter with Claude doesn't support `response_format` JSON schema, so I use `with_structured_output(method="function_calling")` instead. Works perfectly and I get the routing decision + a thinking status message in a single call.
+**Structured output via function calling.** Some OpenRouter models don't support `response_format` JSON schema, so I use `with_structured_output(method="function_calling")` instead. Works perfectly and I get the routing decision + a thinking status message in a single call.
 
 **Two-layer guardrails.** First layer is regex (runs in under 1ms, catches the obvious stuff). Second layer is a DeBERTa model via LLM Guard for subtle prompt injection. If LLM Guard isn't installed, it falls back to regex-only without crashing.
 
@@ -126,7 +126,7 @@ Agent B has `POST /analyze` (takes property criteria, returns valuation) and `GE
 ## Project structure
 
 ```
-Agentic_System/
+Real-Estate-Investment-Analyzer/
 ├── agent_system_a/          # LangGraph supervisor + Property Analyst + Market Researcher
 │   ├── agents/              # supervisor.py, property_analyst.py, market_researcher.py
 │   ├── guardrails/          # input + output validation (regex + ML)
@@ -147,7 +147,6 @@ Agentic_System/
 │   └── Dockerfile
 ├── evaluation/              # 20 test cases, retrieval metrics, RAGAS
 ├── data/                    # CSV (73K listings) + PDF market reports
-├── presentation/            # Slides + speaker notes
 ├── docker-compose.yml       # All 5 services
 ├── .env.example             # Environment template
 └── requirements.txt
