@@ -1,0 +1,44 @@
+# RAG Pipeline
+langchain
+langchain-openai
+openai
+qdrant-client
+pymupdf
+pandas
+tiktoken
+python-dotenv
+
+# Agent System A
+langgraph>=1.1.1
+fastapi
+uvicorn
+sse-starlette
+httpx
+duckduckgo-search
+mcp
+
+# Agent System B
+google-adk
+litellm>=1.75.5
+pydantic
+
+# MCP Server
+fastmcp
+
+# Guardrails (ML-based prompt injection & output scanning)
+# Core library — regex-only mode works without torch
+llm-guard>=0.3.16
+# Full ML mode — install these for DeBERTa-based injection detection
+# torch is large (~2GB) but required for LLM Guard's ML scanners
+torch
+transformers
+
+# Evaluation (RAGAS — optional, for automated RAG eval)
+ragas
+datasets
+
+# Observability (LangSmith — optional, enable via LANGCHAIN_TRACING_V2=true)
+langsmith
+
+# Shared
+python-dotenv

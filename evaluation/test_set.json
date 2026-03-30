@@ -1,0 +1,172 @@
+[
+  {
+    "id": 1,
+    "question": "Find me 2-bedroom apartments under 80000 AED in Dubai",
+    "expected_answer": "Multiple 2-bed apartments in Dubai with annual rent below 80,000 AED",
+    "category": "property_search",
+    "source": "csv",
+    "expected_route": "property_analyst"
+  },
+  {
+    "id": 2,
+    "question": "What are the market trends in Dubai Marina?",
+    "expected_answer": "Dubai Marina (Marsa Dubai) had rental value of AED 3.40B in 2024 with 2.15% YoY growth, ranked #3 community by rental value",
+    "category": "market_research",
+    "source": "pdf",
+    "expected_route": "market_researcher",
+    "retrieval_keywords": ["marsa dubai", "marina", "rental value", "3.40"]
+  },
+  {
+    "id": 3,
+    "question": "What is the average rent for a 1-bedroom apartment in Sharjah?",
+    "expected_answer": "Statistics from CSV data showing average rent for 1-bed apartments in Sharjah",
+    "category": "area_statistics",
+    "source": "csv",
+    "expected_route": "property_analyst"
+  },
+  {
+    "id": 4,
+    "question": "Compare Dubai Marina vs JBR for rental yield",
+    "expected_answer": "Comparison of average rents, property sizes, and rent per sqft between Dubai Marina and JBR",
+    "category": "comparison",
+    "source": "csv+pdf",
+    "expected_route": "both"
+  },
+  {
+    "id": 5,
+    "question": "Should I invest in Business Bay?",
+    "expected_answer": "Analysis combining Business Bay property data with market insights. Business Bay is a top community by investment and luxury unit count (2,864 units, 10.2B total worth)",
+    "category": "investment_advice",
+    "source": "csv+pdf",
+    "expected_route": "both",
+    "retrieval_keywords": ["business bay", "investment", "luxury", "transaction"]
+  },
+  {
+    "id": 6,
+    "question": "What is the total number of real estate transactions in Dubai in 2024?",
+    "expected_answer": "226,000 transactions recorded in 2024, with 36% YoY increase, total value AED 760.99 billion",
+    "category": "market_data",
+    "source": "pdf",
+    "expected_route": "market_researcher",
+    "retrieval_keywords": ["226,000", "transaction", "760", "36%"]
+  },
+  {
+    "id": 7,
+    "question": "Find furnished studios in Abu Dhabi under 40000",
+    "expected_answer": "List of furnished studio apartments in Abu Dhabi with rent under 40,000 AED/year",
+    "category": "property_search",
+    "source": "csv",
+    "expected_route": "property_analyst"
+  },
+  {
+    "id": 8,
+    "question": "What was the total investment value in Dubai real estate in 2024?",
+    "expected_answer": "AED 522 billion in investment value, 27% YoY increase, with 158,000 total investors (41% increase)",
+    "category": "market_data",
+    "source": "pdf",
+    "expected_route": "market_researcher",
+    "retrieval_keywords": ["522", "billion", "investment", "158,000", "investor"]
+  },
+  {
+    "id": 9,
+    "question": "Calculate the mortgage for a property worth 1,500,000 AED",
+    "expected_answer": "Mortgage calculation with UAE defaults: 20% down payment (300,000), 4.5% rate, 25-year term, monthly payment approximately 6,660 AED",
+    "category": "financial",
+    "source": "mcp",
+    "expected_route": "property_analyst"
+  },
+  {
+    "id": 10,
+    "question": "What are the property tax rates in Dubai vs Abu Dhabi?",
+    "expected_answer": "Dubai: 5% housing fee + 0.5% municipality + 4% registration. Abu Dhabi: 3% housing fee + 0% municipality + 2% registration",
+    "category": "financial",
+    "source": "mcp",
+    "expected_route": "property_analyst"
+  },
+  {
+    "id": 11,
+    "question": "What is the average price per square meter for apartments in Marsa Dubai?",
+    "expected_answer": "Marsa Dubai apartments: AED 1,670 per sqft according to Knight Frank Q1 2025, luxury units at AED 49,905/sqm",
+    "category": "market_data",
+    "source": "pdf",
+    "expected_route": "market_researcher",
+    "retrieval_keywords": ["1,670", "49,905", "marsa dubai", "knight frank"]
+  },
+  {
+    "id": 12,
+    "question": "Find 3-bed villas in Ajman",
+    "expected_answer": "List of 3-bedroom villas available for rent in Ajman",
+    "category": "property_search",
+    "source": "csv",
+    "expected_route": "property_analyst"
+  },
+  {
+    "id": 13,
+    "question": "How many rental contracts were registered in Dubai in 2024?",
+    "expected_answer": "965,067 rental contracts in 2024, 15% increase vs 2023. Total rental value AED 46.81B with 17.3% growth",
+    "category": "market_data",
+    "source": "pdf",
+    "expected_route": "market_researcher",
+    "retrieval_keywords": ["965,067", "rental contract", "46.81", "15%"]
+  },
+  {
+    "id": 14,
+    "question": "What is the rent range in Dubai for apartments?",
+    "expected_answer": "Statistics showing min, max, average, and median rent for apartments in Dubai from the 34,235 Dubai listings",
+    "category": "area_statistics",
+    "source": "csv",
+    "expected_route": "property_analyst"
+  },
+  {
+    "id": 15,
+    "question": "Which are the top 5 communities by rental value in Dubai?",
+    "expected_answer": "1. Business Bay (3.54B), 2. Burj Khalifa (3.45B), 3. Marsa Dubai/Dubai Marina (3.40B), 4. Al Thanyah Fifth (2.23B), 5. Al Barsha First (2.11B)",
+    "category": "market_data",
+    "source": "pdf",
+    "expected_route": "market_researcher",
+    "retrieval_keywords": ["business bay", "burj khalifa", "marsa dubai", "rental value", "3.54", "3.45"]
+  },
+  {
+    "id": 16,
+    "question": "Hello, how are you?",
+    "expected_answer": "A friendly greeting mentioning the assistant can help with UAE real estate queries",
+    "category": "greeting",
+    "source": "none",
+    "expected_route": "direct"
+  },
+  {
+    "id": 17,
+    "question": "What percentage of Dubai transactions were off-plan in 2024?",
+    "expected_answer": "Off-plan sales comprised 60.7% of transaction value, with 43.70% YoY growth",
+    "category": "market_data",
+    "source": "pdf",
+    "expected_route": "market_researcher",
+    "retrieval_keywords": ["off-plan", "60.7%", "43.70%"]
+  },
+  {
+    "id": 18,
+    "question": "Find the cheapest apartment available in Al Ain",
+    "expected_answer": "The lowest rent apartment listing in Al Ain from the dataset",
+    "category": "property_search",
+    "source": "csv",
+    "expected_route": "property_analyst"
+  },
+  {
+    "id": 19,
+    "question": "What is the luxury real estate market like in Dubai?",
+    "expected_answer": "435 residential sales above US$10 million in 2024. Top luxury communities: Marsa Dubai (16.2B total worth), Burj Khalifa (12.1B), Business Bay (10.2B)",
+    "category": "market_data",
+    "source": "pdf",
+    "expected_route": "market_researcher",
+    "retrieval_keywords": ["luxury", "435", "10 million", "16.2", "marsa dubai"]
+  },
+  {
+    "id": 20,
+    "question": "What are the residential rental yields in Dubai compared to global cities?",
+    "expected_answer": "Dubai average residential rental yields are 6-8%, significantly higher than London and New York",
+    "category": "market_data",
+    "source": "pdf",
+    "expected_route": "market_researcher",
+    "retrieval_keywords": ["rental yield", "6-8%", "london", "new york"]
+  }
+]

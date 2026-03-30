@@ -1,0 +1,54 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Node
+frontend/node_modules/
+frontend/.vite/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Git
+.git/
+.gitignore
+
+# Docker (avoid recursive copy)
+docker-compose.yml
+docker-compose*.yml
+
+# Docs & non-runtime files
+*.md
+LICENSE
+project_docs/
+presentation/
+evaluation/
+logs/
+pytest-cache-files-*
+
+# Environment (secrets — injected via env_file, never baked in)
+.env
+.env.*
+
+# Tests (not needed in production images)
+**/tests/
+pytest.ini
+run_tests.sh
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,4 @@
+# MCP Server — Financial Tools (Mortgage & Tax)
+fastmcp
+pydantic
+python-dotenv

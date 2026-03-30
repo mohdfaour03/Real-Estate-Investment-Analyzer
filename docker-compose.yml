@@ -1,0 +1,99 @@
+# docker-compose.yml — Real Estate Investment Analyzer
+# Orchestrates all 5 services with proper networking and health checks
+# Usage: docker compose up --build
+
+services:
+
+  # ── Vector Database (Qdrant) ──────────────────────────────────
+  qdrant:
+    image: qdrant/qdrant:latest
+    ports:
+      - "6333:6333"          # gRPC — used by Agent A, Agent B, RAG pipeline
+    volumes:
+      - qdrant_storage:/qdrant/storage   # Persist embeddings across restarts
+    networks:
+      - backend
+    healthcheck:
+      test: ["CMD-SHELL", "bash -c 'echo > /dev/tcp/localhost/6333' || exit 1"]
+      interval: 10s
+      timeout: 5s
+      start_period: 10s
+      retries: 3
+    restart: unless-stopped
+
+  # ── MCP Server (Financial Tools) — port 8002 ─────────────────
+  mcp-server:
+    build:
+      context: .                         # Root context so COPY can reach shared/
+      dockerfile: mcp_server/Dockerfile
+    ports:
+      - "8002:8002"
+    env_file: .env
+    networks:
+      - backend
+    restart: unless-stopped
+
+  # ── Agent System B (Independent Valuation) — port 8001 ───────
+  agent-system-b:
+    build:
+      context: .
+      dockerfile: agent_system_b/Dockerfile
+    ports:
+      - "8001:8001"
+    env_file: .env
+    environment:
+      - QDRANT_HOST=qdrant              # Override localhost → Docker service name
+    depends_on:
+      qdrant:
+        condition: service_healthy       # Wait until Qdrant is actually ready
+    networks:
+      - backend
+    restart: unless-stopped
+
+  # ── Agent System A (Supervisor + Specialists) — port 8000 ────
+  agent-system-a:
+    build:
+      context: .
+      dockerfile: agent_system_a/Dockerfile
+    ports:
+      - "8000:8000"
+    env_file: .env
+    environment:
+      - QDRANT_HOST=qdrant              # Docker DNS → qdrant container
+      - AGENT_B_URL=http://agent-system-b:8001
+      - MCP_SERVER_URL=http://mcp-server:8002
+      - CORS_ORIGINS=http://localhost:5173,http://frontend:80   # External + internal origins
+    depends_on:
+      qdrant:
+        condition: service_healthy
+      mcp-server:
+        condition: service_started
+      agent-system-b:
+        condition: service_started
+    networks:
+      - backend
+    restart: unless-stopped
+
+  # ── Frontend (React → Nginx) — port 80 ───────────────────────
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5173:80"                        # Host 5173 → container Nginx on 80
+    depends_on:
+      agent-system-a:
+        condition: service_started
+    networks:
+      - backend
+    restart: unless-stopped
+
+# ── Named volume for Qdrant persistence ──────────────────────────
+volumes:
+  qdrant_storage:
+
+# ── Custom bridge network ────────────────────────────────────────
+# All services on one network; Docker DNS resolves service names
+networks:
+  backend:
+    driver: bridge

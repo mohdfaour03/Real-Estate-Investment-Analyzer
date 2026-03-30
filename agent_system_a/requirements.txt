@@ -1,0 +1,18 @@
+# Agent System A — LangGraph Supervisor + Specialists
+langchain
+langchain-openai
+langchain-text-splitters
+openai
+python-multipart
+qdrant-client
+pymupdf
+pandas
+tiktoken
+python-dotenv
+langgraph>=1.1.1
+fastapi
+uvicorn
+sse-starlette
+httpx
+duckduckgo-search
+mcp

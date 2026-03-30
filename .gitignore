@@ -1,0 +1,42 @@
+# Environment secrets
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+*.egg-info/
+
+# Pytest
+.pytest_cache/
+pytest-cache-files-*/
+
+# Logs
+logs/
+*.log
+
+# Node
+frontend/node_modules/
+frontend/dist/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+~$*
+
+# Evaluation outputs (regeneratable)
+evaluation/results.json
+evaluation/comparison_results.json
+evaluation/eval_output.txt
+
+# Claude Code
+.claude/
+CLAUDE.md

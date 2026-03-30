@@ -1,0 +1,11 @@
+# Agent System B — Google ADK Independent Valuation
+google-adk
+litellm>=1.75.5
+pydantic
+python-dotenv
+qdrant-client
+openai
+pandas
+httpx
+fastapi
+uvicorn
