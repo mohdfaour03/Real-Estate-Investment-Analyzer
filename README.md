@@ -43,8 +43,8 @@ There are 5 services, all orchestrated via Docker Compose:
 You need Docker, an OpenRouter API key ([openrouter.ai/keys](https://openrouter.ai/keys)), and optionally a Groq key for voice input.
 
 ```bash
-git clone https://github.com/<your-username>/Agentic_System.git
-cd Agentic_System
+git clone https://github.com/mohdfaour03/Real-Estate-Investment-Analyzer.git
+cd Real-Estate-Investment-Analyzer
 cp .env.example .env
 # add your API keys to .env
 docker compose up --build -d
