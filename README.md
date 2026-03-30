@@ -52,6 +52,24 @@ docker compose up --build -d
 
 First startup takes a couple minutes (building images, ingesting PDFs into Qdrant). After that, open `http://localhost:5173`.
 
+### Quick start with pre-built images
+
+If you don't want to build from source, you can pull pre-built images from Docker Hub instead:
+
+```bash
+git clone https://github.com/mohdfaour03/Real-Estate-Investment-Analyzer.git
+cd Real-Estate-Investment-Analyzer
+cp .env.example .env
+# add your API keys to .env
+docker compose -f docker-compose.hub.yml up -d
+```
+
+Docker Hub images:
+- [mofaour03/re-analyzer-agent-a](https://hub.docker.com/r/mofaour03/re-analyzer-agent-a)
+- [mofaour03/re-analyzer-agent-b](https://hub.docker.com/r/mofaour03/re-analyzer-agent-b)
+- [mofaour03/re-analyzer-mcp-server](https://hub.docker.com/r/mofaour03/re-analyzer-mcp-server)
+- [mofaour03/re-analyzer-frontend](https://hub.docker.com/r/mofaour03/re-analyzer-frontend)
+
 To check everything is healthy:
 ```bash
 docker compose ps
