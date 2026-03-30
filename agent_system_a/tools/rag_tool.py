@@ -227,7 +227,7 @@ def web_search(query: str, max_results: int = 5) -> str:
 
     logger.info(f"web_search called | query='{query[:60]}...'")
 
-    serpapi_key = os.getenv("SERPAPI_KEY", "822c188b84dd9df9b89d1ca024d62f7265861488eb09f5a95d59756eb4765679")
+    serpapi_key = os.getenv("SERPAPI_KEY", "")
 
     try:
         resp = _httpx.get("https://serpapi.com/search", params={
