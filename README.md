@@ -23,7 +23,7 @@ You can also upload your own PDFs -- they get chunked, embedded, and stored in Q
 
 There are 5 services, all orchestrated via Docker Compose:
 
-**Qdrant** (port 6333) -- vector database holding 263 chunks from 3 PDF market reports. Both agent systems query it for semantic search.
+**Qdrant** (port 6333) -- vector database for PDF market reports (auto-ingested on first startup). Both agent systems query it for semantic search. Users can also upload their own PDFs at runtime.
 
 **Agent System A** (port 8000) -- the main brain. Built with LangGraph and FastAPI. A supervisor agent looks at each query and routes it to the right specialist:
 - *Property Analyst* has 6 tools: property search (pandas on 73K CSV rows), market report search (Qdrant), area stats, web search, mortgage calculator, and tax estimator.
@@ -63,7 +63,7 @@ docker compose ps
 
 **73,742 UAE rental listings** in a CSV file, queried with pandas. I deliberately didn't embed these in Qdrant -- tabular data with structured fields (city, beds, rent, sqft) needs exact filtering, not semantic similarity. A vector search for "2-bed under 50k in Sharjah" would return semantically similar but potentially wrong results.
 
-**3 PDF market reports** (DLD, CBRE, Knight Frank) chunked into 263 pieces, embedded with `text-embedding-3-small` (1536 dimensions), stored in Qdrant with cosine distance. The chunking is 2000 characters with 200-char overlap -- big enough to keep full paragraphs intact.
+**3 PDF market reports** (DLD, CBRE, Knight Frank) chunked and embedded with `text-embedding-3-small` (1536 dimensions), stored in Qdrant with cosine distance. The chunking is 2000 characters with 200-char overlap -- big enough to keep full paragraphs intact.
 
 Users can also **upload their own PDFs** through the chat UI. The system extracts text, chunks it, embeds it, and upserts to Qdrant. If you re-upload the same file, it deletes the old chunks first to avoid duplicates. On every request, the system queries Qdrant for all available document names and tells the agents about them, so you don't have to explicitly say "look at the file I uploaded."
 
@@ -110,7 +110,7 @@ Agent B has `POST /analyze` (takes property criteria, returns valuation) and `GE
 | | What | Why |
 |-|------|-----|
 | LLM | OpenRouter | Routes to different models, has a free tier |
-| Embeddings | text-embedding-3-small | Cheap, fast, 1536-dim, good enough for 263 chunks |
+| Embeddings | text-embedding-3-small | Cheap, fast, 1536-dim |
 | Agent framework A | LangGraph | Streaming, conditional routing, industry standard |
 | Agent framework B | Google ADK | Deliberately different -- shows multi-framework interop |
 | Vector DB | Qdrant | Fast, good SDK, easy Docker setup |
