@@ -23,8 +23,6 @@ logger = get_logger("shared.cost_tracker")
 # "openrouter/auto" routes dynamically; we use a blended estimate.
 PRICING = {
     "openrouter/auto": {"input": 2.00, "output": 8.00},
-    "anthropic/claude-sonnet-4": {"input": 3.00, "output": 15.00},
-    "anthropic/claude-haiku-3.5": {"input": 0.80, "output": 4.00},
     "openai/gpt-4o-mini": {"input": 0.15, "output": 0.60},
     "openai/gpt-4o": {"input": 2.50, "output": 10.00},
     "text-embedding-3-small": {"input": 0.02, "output": 0.00},

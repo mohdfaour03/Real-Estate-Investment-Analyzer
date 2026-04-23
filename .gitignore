@@ -37,6 +37,3 @@ evaluation/results.json
 evaluation/comparison_results.json
 evaluation/eval_output.txt
 
-# Claude Code
-.claude/
-CLAUDE.md

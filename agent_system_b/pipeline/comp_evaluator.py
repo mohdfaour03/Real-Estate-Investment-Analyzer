@@ -77,10 +77,6 @@ def evaluate_comps(finder_result: CompFinderResult) -> EvaluationResult:
     market_context = "\n\n".join(finder_result.market_context) or "No market context available."
     logger.info(f"Evaluating {len(finder_result.comparable_properties)} comps with LLM reasoning engine")
 
-    # Single LLM call — the reasoning engine
-    # NOTE: response_format={"type": "json_object"} is NOT used because
-    # OpenRouter doesn't support it for Claude models. Instead we rely on
-    # the system prompt instruction + robust JSON extraction from the response.
     response = client.chat.completions.create(
         model=LLM_MODEL_OPENAI,
         messages=[
@@ -93,7 +89,7 @@ def evaluate_comps(finder_result: CompFinderResult) -> EvaluationResult:
         temperature=0.2,
     )
 
-    # Extract JSON from response — Claude may wrap it in ```json fences
+    # Extract JSON from response in case the model wraps content in ```json fences
     text = response.choices[0].message.content.strip()
     fence_match = re.search(r"```(?:json)?\s*\n?(.*?)```", text, re.DOTALL)
     if fence_match:
@@ -131,3 +127,4 @@ def _format_comps(finder_result: CompFinderResult) -> str:
         lines.append(line)
 
     return "\n\n".join(lines)
+
